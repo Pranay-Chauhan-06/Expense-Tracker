@@ -1,0 +1,296 @@
+/* Global Styles */
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.light {
+  background-color: #f9f9f9;
+  color: #333;
+}
+
+/* Theme Toggle Slider */
+.theme-toggle {
+  position: relative;         
+  display: flex;
+  justify-content: flex-end;  
+  margin-bottom: 20px;
+}
+
+.switch {
+  position: absolute;        
+  right: 0;                   
+  top: 0;                      
+  display: inline-block;
+  width: 40px;                 
+  height: 24px;                
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+h1{
+  font-size: 150%;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #000000;
+  transition: 0.4s;
+  border-radius: 34px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;  
+  width: 18px;   
+  border-radius: 50%;
+  left: 3px;     
+  bottom: 3px;   
+  background-color: rgb(255, 255, 255);
+  transition: 0.4s;
+}
+
+input:checked + .slider {
+  background-color: #ffffff;
+}
+
+input:checked + .slider:before {
+  transform: translateX(16px); /* Adjusted to match new slider size */
+  background-color: #000000;
+}
+
+/* History Section */
+.history {
+  margin-top: 20px;
+  padding: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  background-color: #f0f0f0;
+  color: #333;
+}
+
+
+body.dark .history {
+  background-color: #3b3b3b;
+  border-color: #555;
+  color: #f9f9f9;
+}
+
+body.dark{
+  background-color: #2c2c2c;
+  color: #f9f9f9
+}
+
+.line-separator {
+  width: 100%;        /* Full width */
+  height: 1px;        /* Line thickness */
+  background-color: #ddd; /* Line color */
+  margin: 10px 0;      /* Vertical spacing */
+}
+
+
+/* App Container */
+.App {
+  max-width: 60%;
+  margin: 20px auto;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  background-color: inherit;
+  color: inherit;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+/* Buttons */
+button {
+  padding: 8px 12px;
+  font-size: 80%;
+  font-weight: bold;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #007bff;
+  color: white;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+#pie, #income, #bar {
+  margin-left: auto;
+  display: block; 
+}
+
+#delete {
+  background-color: #007bff;
+  padding: 0.2px 10px;
+  color: #ffffff;
+  font-size: 90%;
+}
+
+#delete:hover {
+  background-color: #0056b3;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+button:focus {
+  outline: none;
+}
+
+.theme-toggle {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 20px;
+}
+
+/* Form and Inputs */
+.expense-form,
+.filter {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.expense-form input,
+.filter input {
+  padding: 10px;
+  font-size: 90%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: inherit;
+  color: inherit;
+  transition: background-color 0.3s, color 0.3s;
+  text-transform: capitalize;
+}
+
+#date{
+  text-transform: none;
+}
+
+/* Expense List */
+.expense-list ul {
+  list-style: none;
+  padding: 0;
+}
+
+.expense-list li {
+  margin: 5px 0;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.expense-list li:last-child {
+  border-bottom: none;
+}
+.expense-form {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.expense-form div {
+  display: flex;
+  justify-content: flex-start;
+}
+
+/* Dropdown Styling */
+.expense-form select {
+  padding: 10px;
+  font-size: 90%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: inherit;
+  color: inherit;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+body.dark .expense-form select {
+  border-color: #555;
+  background-color: #3b3b3b;
+  color: #f9f9f9;
+}
+
+.expense-form select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+body.dark .expense-form select:focus {
+  border-color: #1a73e8;
+}
+
+/* Table */
+table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 10px;
+  font-size: 100%;
+  color: inherit; /* Ensure text color changes with the theme */
+}
+
+th, td {
+  text-align: left;
+  padding: 8px;
+}
+
+th {
+  font-weight: bold;
+}
+
+tr#data:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Filter Styling */
+.filter {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+/* Date and Category Inputs */
+.filter input,
+.filter select {
+  padding: 10px;
+  font-size: 100%;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  background-color: inherit;
+  color: inherit;
+  transition: background-color 0.3s, color 0.3s, border-color 0.3s;
+  cursor: pointer;
+}
+
+body.dark .filter input,
+body.dark .filter select {
+  border-color: #555;
+  background-color: #3b3b3b;
+  color: #f9f9f9;
+}
+
+.filter input:focus,
+.filter select:focus {
+  border-color: #007bff;
+  outline: none;
+}
+
+body.dark .filter input:focus,
+body.dark .filter select:focus {
+  border-color: #1a73e8;
+}
