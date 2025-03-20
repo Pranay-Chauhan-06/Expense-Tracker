@@ -29,15 +29,6 @@ function Filter({ onFilterByDate, onFilterByCategory, onFilterByBoth, onFilterBy
     onFilterByMonth(e.target.value); // Call the filter function passed from App.js
   };
 
-  // function handleFilterByBoth() {
-  //   if (!date) {
-  //     onFilterByBoth("", category);
-  //     return;
-  //   }
-  //   const formattedDate = formatDate(date); // Convert date to dd/mm/yyyy
-  //   onFilterByBoth(formattedDate, category);
-  // }
-
   return (
     <div className="filter">
     <div className="filter-container">
