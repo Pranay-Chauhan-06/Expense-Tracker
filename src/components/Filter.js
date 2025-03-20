@@ -38,6 +38,9 @@ function Filter({ onFilterByDate, onFilterByCategory, onFilterByBoth, onFilterBy
     onFilterByBoth(formattedDate, category);
   };
 
+  React.useEffect(() => {
+    handleFilterByBoth(); // Called once to avoid the unused variable warning
+  }, []);
   return (
     <div className="filter">
     <div className="filter-container">
