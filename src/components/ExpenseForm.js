@@ -36,6 +36,12 @@ function ExpenseForm({ onAddExpense, onAddIncome }) {
     }
   };
 
+  const handleRemoveIncome = () => {
+    onAddIncome(0); // Set income to zero
+    setIncomeAmount("");
+    setShowIncomeField(false);
+  };
+
   return (
     <form className="expense-form" onSubmit={handleSubmit}>
       <input
@@ -87,9 +93,12 @@ function ExpenseForm({ onAddExpense, onAddIncome }) {
             placeholder="Income Amount"
             value={incomeAmount}
             onChange={(e) => setIncomeAmount(e.target.value)}
-          />
+          />&nbsp;
           <button type="button" onClick={handleAddIncome}>
             Save Income
+          </button>&nbsp;
+          <button type="button" onClick={handleRemoveIncome}>
+            Remove Income
           </button>
         </div>
       )}

@@ -32,19 +32,16 @@ function App() {
   const [filterCategory, setFilterCategory] = useState("");
   const [showHistory, setShowHistory] = useState(false);
   const [alertTriggered, setAlertTriggered] = useState(false);
-  const totalExpenses = expenses.reduce((total, expense) => total + expense.amount, 0);
-  const remainingIncome = income - totalExpenses;
-  const remainingIncomePercentage = (remainingIncome / income) * 100;
+  const [lastDeleted, setLastDeleted] = useState(null);
+  const [deletedIndex, setDeletedIndex] = useState(null);
   const [isDarkMode, setIsDarkMode] = useState(() => {
     const savedTheme = localStorage.getItem("isDarkMode");
     return savedTheme !== null ? JSON.parse(savedTheme) : true;
   });
-
-  const [lastDeleted, setLastDeleted] = useState(null);
-  const [deletedIndex, setDeletedIndex] = useState(null);
-
+  const totalExpenses = expenses.reduce((total, expense) => total + expense.amount, 0);
+  const remainingIncome = income - totalExpenses;
+  const remainingIncomePercentage = (remainingIncome / income) * 100;
   
-
   useEffect(() => {
     document.body.className = isDarkMode ? "dark" : "light";
   }, [isDarkMode]);
@@ -171,7 +168,10 @@ function App() {
   };
 
   const calculateRemainingBalance = () => {
-    return income - calculateTotal();
+    if(income>0)
+      return income - calculateTotal();
+    else
+      return 0; 
   };
 
   const toggleHistory = () => {
@@ -245,9 +245,10 @@ function App() {
           )}
           
           <h3>Total Expenses: ₹{calculateTotal().toFixed(2)}</h3>
-          <h3>Total Income: ₹{income.toFixed(2)}</h3>
-          <h3>Remaining Balance: ₹{calculateRemainingBalance().toFixed(2)} ({remainingIncomePercentage.toFixed(2)}%)</h3>
-          
+          {income > 0 && (
+          <><h3>Total Income: ₹{income.toFixed(2)}</h3><h3>Remaining Balance: ₹{calculateRemainingBalance().toFixed(2)} ({income > 0 ? remainingIncomePercentage.toFixed(2) : '0.00'}%)</h3></>
+          )}
+
           {/* Button to toggle Pie Chart visibility */}
           <div>
             <button id="pie" onClick={togglePieChart} style={{ marginTop: "20px" }}>
@@ -255,14 +256,15 @@ function App() {
             </button>
             {showPieChart && <ExpensePieChart expenses={filteredExpenses} isDarkMode={isDarkMode}/>}
           </div>
-
+          {income > 0 && (
           <div style={{ marginTop: "15px" }}>
             <button id="bar" onClick={toggleBarChart}>
-              {showBarChart ? "Hide Income Chart" : "Show Expense Chart"}
+              {showBarChart ? "Hide Income Chart" : "Show Income Chart"}
             </button>  
             {/* Conditionally render the Bar Chart */}
             {showBarChart && <ExpenseBarChart income={income} expenses={filteredExpenses} isDarkMode={isDarkMode} />}
           </div>
+          )}
         </div>
       ) : (
         <div>
