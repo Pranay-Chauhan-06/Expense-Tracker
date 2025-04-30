@@ -51,8 +51,17 @@ const ExpensePieChart = ({ expenses, isDarkMode }) => {
   };
 
   return (
-    <div style={{ marginTop: "20px" }}>
+    <div
+      style={{
+        display: "flex",          // Enable flexbox
+        justifyContent: "center", // Horizontally center
+        alignItems: "center",     // Vertically center
+        marginTop: "20px",
+      }}
+    >
+    <div style={{ width: "500px", height: "auto", marginTop: "20px" }}>
       <Pie data={data} options={options} />
+    </div>
     </div>
   );
 };
